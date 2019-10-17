@@ -7,9 +7,10 @@ steps:
   image: docker:dind
   privileged: true
   commands:
+   - echo $DRONE_SOURCE_BRANCH
+   - echo $DRONE_TARGET_BRANCH
+   - echo $DRONE_PULL_REQUEST
    - ./build.sh
-  when:
-    event: push
 
 - name: remove build
   image: docker:dind
