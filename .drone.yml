@@ -8,9 +8,8 @@ steps:
   privileged: true
   commands:
    - ./build.sh
-volumes:
-- name: dockersock
-  path: /var/run
+  when:
+    event: push
 
 - name: remove build
   image: docker:dind
@@ -19,3 +18,8 @@ volumes:
    - ./cleanup.sh
   when:
     pull_request: closed
+
+volumes:
+- name: dockersock
+  path: /var/run
+
